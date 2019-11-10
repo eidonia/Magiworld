@@ -3,7 +3,7 @@ package com.bast.magiworld;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Personnage  implements Parcelable, Attaque {
+public abstract class Personnage  implements Parcelable, Attaque {
     String name;
     String nomPerso;
     protected int niveau;
@@ -13,6 +13,7 @@ public class Personnage  implements Parcelable, Attaque {
     protected int intelligence;
     String nomAttBase;
     String nomAttSpe;
+    int degats;
 
     //Personnage(){}
 
@@ -92,17 +93,6 @@ public class Personnage  implements Parcelable, Attaque {
         nomAttSpe = in.readString();
     }
 
-    public static final Creator<Personnage> CREATOR = new Creator<Personnage>() {
-        @Override
-        public Personnage createFromParcel(Parcel in) {
-            return new Personnage(in);
-        }
-
-        @Override
-        public Personnage[] newArray(int size) {
-            return new Personnage[size];
-        }
-    };
 
     @Override
     public int describeContents() {
@@ -121,11 +111,5 @@ public class Personnage  implements Parcelable, Attaque {
         dest.writeString(nomAttBase);
         dest.writeString(nomAttSpe);
     }
-
-    @Override
-    public void attaqueDeBase(Personnage defenseur) {}
-
-    @Override
-    public void attaqueSpeciale(Personnage attaquant, Personnage defenseur) {}
 }
 

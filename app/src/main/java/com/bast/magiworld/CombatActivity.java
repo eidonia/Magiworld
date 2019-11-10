@@ -71,120 +71,8 @@ public class CombatActivity extends AppCompatActivity {
 
         testArray2 = findViewById(R.id.testarray2);
 
-        textRound.setText("\n\n\nRound 1");
+        touJeu(listPerso);
 
-
-        if(listPerso.get(0).name.equals("Mage") && listPerso.get(1).name.equals("Mage")){
-            Mage joueur1 = new Mage(listPerso.get(0).name,  listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Boule de Feu", "Soin");
-            Mage joueur2 = new Mage(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Boule de Feu", "Soin");
-
-            joueur1.name = "Mage Joueur 1";
-            joueur2.name = "Mage Joueur 2";
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        } else if(listPerso.get(0).name.equals("Mage") && listPerso.get(1).name.equals("Guerrier")) {
-            Mage joueur1 = new Mage(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Boule de Feu", "Soin");
-            Guerrier joueur2 = new Guerrier(listPerso.get(1).name, listPerso.get(0).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Coup d'épée", "Coup de Rage");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }else if(listPerso.get(0).name.equals("Mage") && listPerso.get(1).name.equals("Rodeur")) {
-            Mage joueur1 = new Mage(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Boule de Feu", "Soin");
-            Rodeur joueur2 = new Rodeur(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Tir à l'Arc", "Concentration");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }else if(listPerso.get(0).name.equals("Guerrier") && listPerso.get(1).name.equals("Mage")) {
-            Guerrier joueur1 = new Guerrier(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Coup d'épée", "Coup de Rage");
-            Mage joueur2 = new Mage(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Boule de Feu", "Soin");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }else if(listPerso.get(0).name.equals("Guerrier") && listPerso.get(1).name.equals("Guerrier")) {
-            Guerrier joueur1 = new Guerrier(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Coup d'épée", "Coup de Rage");
-            Guerrier joueur2 = new Guerrier(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Coup d'épée", "Coup de Rage");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }else if(listPerso.get(0).name.equals("Guerrier") && listPerso.get(1).name.equals("Rôdeur")) {
-            Guerrier joueur1 = new Guerrier(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Coup d'épée", "Coup de Rage");
-            Rodeur joueur2 = new Rodeur(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Tir à l'Arc", "Concentration");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }else if(listPerso.get(0).name.equals("Rôdeur") && listPerso.get(1).name.equals("Mage")) {
-            Rodeur joueur1 = new Rodeur(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Tir à l'Arc", "Concentration");
-            Mage joueur2 = new Mage(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Boule de Feu", "Soin");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }else if(listPerso.get(0).name.equals("Rôdeur") && listPerso.get(1).name.equals("Guerrier")) {
-            Rodeur joueur1 = new Rodeur(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Tir à l'Arc", "Concentration");
-            Guerrier joueur2 = new Guerrier(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Coup d'épée", "Coup de Rage");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }else {
-            Rodeur joueur1 = new Rodeur(listPerso.get(0).name, listPerso.get(0).nomPerso, listPerso.get(0).niveau, listPerso.get(0).vie, listPerso.get(0).force, listPerso.get(0).agilite, listPerso.get(0).intelligence, "Tir à l'Arc", "Concentration");
-            Rodeur joueur2 = new Rodeur(listPerso.get(1).name, listPerso.get(1).nomPerso, listPerso.get(1).niveau, listPerso.get(1).vie, listPerso.get(1).force, listPerso.get(1).agilite, listPerso.get(1).intelligence, "Tir à l'Arc", "Concentration");
-
-            textJoueur1.setText(joueur1.nomPerso + "\n");
-            textJoueur2.setText(joueur2.nomPerso +"\n");
-
-            nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
-
-            testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
-            tourAttaque(joueur1, joueur2);
-
-        }
 
         buttonReturn.setText("Recommencer");
         buttonReturn.setOnClickListener(new View.OnClickListener() {
@@ -200,14 +88,14 @@ public class CombatActivity extends AppCompatActivity {
     }
 
     public void tourAttaque(final Personnage persoJ1, final Personnage persoJ2){
-        buttonAtt(buttonAttBaseJ1, textInfoJ1, persoJ1, persoJ2);
-        buttonAtt(buttonAttBaseJ2, textInfoJ2, persoJ2, persoJ1);
+        buttonAtt(buttonAttBaseJ1, buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2);
+        buttonAtt(buttonAttBaseJ2, buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1);
 
         buttonPV(buttonPVJ1, textInfoJ1, persoJ1);
         buttonPV(buttonPVJ2, textInfoJ2, persoJ2);
 
-        buttonAttSpe(buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2);
-        buttonAttSpe(buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1);
+        buttonAttSpe(buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, buttonAttBaseJ1);
+        buttonAttSpe(buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, buttonAttBaseJ2);
 
         buttonFinRound.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,20 +106,25 @@ public class CombatActivity extends AppCompatActivity {
                 buttonAttSpeJ2.setEnabled(true);
                 i++;
                 textRound.setText("\n\nRound " + i);
+
+                if(persoJ1.name.equals("Rôdeur"))
+                    persoJ1.degats = persoJ1.agilite;
+                if (persoJ2.name.equals("Rôdeur"))
+                    persoJ2.degats = persoJ2.agilite;
             }
         });
     }
 
 
-    public void buttonAtt(final Button buttonAttaque, final TextView textInfo, final Personnage persoAtt, final Personnage persoDef){
+    public void buttonAtt(final Button buttonAttaque, final Button buttAttSpe, final TextView textInfo, final Personnage persoAtt, final Personnage persoDef){
         buttonAttaque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                persoAtt.attaqueDeBase(persoDef);
+                persoAtt.attaqueDeBase(persoDef, textInfo);
                 buttonAttaque.setEnabled(false);
-
-                textInfo.setText("Vous attaquez " + persoDef.nomPerso + " avec votre attaque " + persoAtt.nomAttBase);
                 testPointDeVie(persoAtt, persoDef, textResult);
+
+                buttAttSpe.setEnabled(false);
             }
         });
 
@@ -246,21 +139,15 @@ public class CombatActivity extends AppCompatActivity {
         });
     }
 
-    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo, final Personnage persoAttSpe, final Personnage persoDefSpe){
+    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo, final Personnage persoAttSpe, final Personnage persoDefSpe, final Button buttonAttBase){
         buttonAttSpe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                persoAttSpe.attaqueSpeciale(persoAttSpe, persoDefSpe);
+                persoAttSpe.attaqueSpeciale(persoDefSpe, textInfo);
                 buttonAttSpe.setEnabled(false);
 
-                if(persoAttSpe.name.equals("Rôdeur")){
-                    textInfo.setText("Vous augmentez votre concentration");
-                }else if(persoAttSpe.name.equals("Mage")) {
-                    textInfo.setText("Vous vous soignez, votre vie est maintenant de " + persoAttSpe.nomAttSpe);
-                }else {
-                    textInfo.setText("Vous attaquez " + persoDefSpe.nomPerso + " avec votre attaque " + persoAttSpe.nomAttSpe);
-                    testPointDeVie(persoAttSpe, persoDefSpe, textResult);
-                }
+                if(persoAttSpe.name.equals("Guerrier") || persoAttSpe.name.equals("Mage"))
+                    buttonAttBase.setEnabled(false);
             }
         });
     }
@@ -283,5 +170,25 @@ public class CombatActivity extends AppCompatActivity {
         buttonJ1Spe.setText(pJ1.nomAttSpe);
         buttonJ2Base.setText(pJ2.nomAttBase);
         buttonJ2Spe.setText(pJ2.nomAttSpe);
+    }
+
+    public Personnage create(ArrayList<Personnage> array, int i){
+        if(array.get(i).name.equals("Mage")) {
+            return new Mage(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, "Boule de Feu", "Soin");
+        }else if (array.get(i).name.equals("Guerrier")) {
+            return new Guerrier(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, "Coup d'épée", "Coup de Rage");
+        }
+        return new Rodeur(array.get(i).name, array.get(i).nomPerso, array.get(i).niveau, array.get(i).vie, array.get(i).force, array.get(i).agilite, array.get(i).intelligence, "Tir à l'Arc", "Concentration");
+    }
+
+    public void touJeu(ArrayList<Personnage> list){
+        textRound.setText("\n\n\nRound 1");
+
+        Personnage joueur1 = create(list, 0);
+        Personnage joueur2 = create(list, 1);
+        nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
+        testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
+        tourAttaque(joueur1, joueur2);
+
     }
 }
