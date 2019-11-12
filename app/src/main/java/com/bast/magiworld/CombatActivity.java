@@ -2,15 +2,23 @@ package com.bast.magiworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-public class CombatActivity extends AppCompatActivity {
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
+public class CombatActivity extends Activity {
 
     TextView testArray;
     TextView testArray2;
@@ -37,15 +45,22 @@ public class CombatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+                                .setDefaultFontPath("fonts/MedievalSharp-Regular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
         setContentView(R.layout.activity_combat);
 
         textRound = findViewById(R.id.textRound);
         separateur = findViewById(R.id.separateur);
-        separateur.setText("\n ----------------------------------------------------------------- \n");
+        separateur.setText("\n ---------------------------------------------------- \n");
         separateur2 = findViewById(R.id.separateur2);
-        separateur.setText("\n ----------------------------------------------------------------- \n");
+        separateur.setText("\n ---------------------------------------------------- \n");
         separateur3 = findViewById(R.id.separateur3);
-        separateur3.setText("\n ----------------------------------------------------------------- \n");
+        separateur3.setText("\n --------------------------------------------------- \n");
         textJoueur1 = findViewById(R.id.textJoueur1CA);
 
         textJoueur2 = findViewById(R.id.textJoueur2CA);
@@ -215,5 +230,10 @@ public class CombatActivity extends AppCompatActivity {
         testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
         tourAttaque(joueur1, joueur2);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }

@@ -2,10 +2,14 @@ package com.bast.magiworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +22,12 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
+public class MainActivity extends Activity {
 
     public final static String VAL_RETOUR = "com.bast.magiworld.VALRETOUR";
 
@@ -64,7 +73,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/MedievalSharp-Regular.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()))
+                .build());
         setContentView(R.layout.activity_main);
+
+
 
         textBienvenue = findViewById(R.id.textBienvenue);
 
@@ -101,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         buttonCombat = findViewById(R.id.buttonCombat);
         buttonRAZ = findViewById(R.id.buttonRAZ);
 
-        textBienvenue.setText("Bienvenue à MagiWorld ! Créez vos personnages.");
+        textBienvenue.setText("Magiworld");
 
         textNomPerso.setText("Donne un nom à ton personnage");
         editNomPerso.getHint();
@@ -294,6 +312,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }
 
