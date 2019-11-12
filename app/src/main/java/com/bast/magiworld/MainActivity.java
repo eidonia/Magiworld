@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,24 +108,24 @@ public class MainActivity extends AppCompatActivity {
         editNomPerso.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         editNomPerso.setMaxLines(1);
 
-        textClassJ1.setText("Choisissez votre classe");
+        textClassJ1.setText("Choisis ta classe");
 
-        textNivJ1.setText("Entrez le niveau de votre personnage");
+        textNivJ1.setText("Entre le niveau de ton personnage");
         editNivJ1.getHint();
         editNivJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         editNivJ1.setMaxLines(1);
 
-        textForceJ1.setText("Entrez sa force");
+        textForceJ1.setText("Entre sa force");
         editForceJ1.getHint();
         editForceJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         editForceJ1.setMaxLines(1);
 
-        textAgiJ1.setText("Entrez son agilité");
+        textAgiJ1.setText("Entre son agilité");
         editAgiJ1.getHint();
         editAgiJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         editAgiJ1.setMaxLines(1);
 
-        textIntJ1.setText("Entrez son intelligence");
+        textIntJ1.setText("Entre son intelligence");
         editIntJ1.getHint();
         editIntJ1.setInputType(InputType.TYPE_CLASS_NUMBER);
         editIntJ1.setMaxLines(1);
@@ -135,24 +137,24 @@ public class MainActivity extends AppCompatActivity {
         editNomPerso2.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         editNomPerso2.setMaxLines(1);
 
-        textClassJ2.setText("Choisissez votre classe");
+        textClassJ2.setText("Choisis ta classe");
 
-        textNivJ2.setText("Entrez le niveau de votre personnage");
+        textNivJ2.setText("Entre le niveau de ton personnage");
         editNivJ2.getHint();
         editNivJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         editNivJ2.setMaxLines(1);
 
-        textForceJ2.setText("Entrez sa force");
+        textForceJ2.setText("Entre sa force");
         editForceJ2.getHint();
         editForceJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         editForceJ2.setMaxLines(1);
 
-        textAgiJ2.setText("Entrez son agilité");
+        textAgiJ2.setText("Entre son agilité");
         editAgiJ2.getHint();
         editAgiJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         editAgiJ2.setMaxLines(1);
 
-        textIntJ2.setText("Entrez son intelligence");
+        textIntJ2.setText("Entre son intelligence");
         editIntJ2.getHint();
         editIntJ2.setInputType(InputType.TYPE_CLASS_NUMBER);
         editIntJ2.setMaxLines(1);
@@ -180,23 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 if(editNomPerso.getText().toString().equals("") || editNivJ1.getText().toString().equals("") || editForceJ1.getText().toString().equals("") || editIntJ1.getText().toString().equals("") || editAgiJ1.getText().toString().equals("")){
                     Toast.makeText(MainActivity.this, "Remplis les cases", Toast.LENGTH_LONG).show();
                 }else{
-                    String nomPerso = editNomPerso.getText().toString();
-
-                    String nivJ1 = editNivJ1.getText().toString();
-                    final int nivJ1Int = Integer.parseInt(nivJ1);
-
-                    int vieJ1 = 5*nivJ1Int;
-
-                    String forceJ1 = editForceJ1.getText().toString();
-                    final int forceJ1Int = Integer.parseInt(forceJ1);
-
-                    String agiJ1 = editAgiJ1.getText().toString();
-                    final int agiJ1Int = Integer.parseInt(agiJ1);
-
-                    String intJ1 = editIntJ1.getText().toString();
-                    final int intJ1Int = Integer.parseInt(intJ1);
-
-                    testCarac(nomPerso, nivJ1Int, vieJ1, forceJ1Int, agiJ1Int, intJ1Int, textResCreaJ1, spinClassJ1);
+                    createStats(editNomPerso, editNivJ1, editForceJ1, editAgiJ1, editIntJ1, textResCreaJ1, spinClassJ1);
                 }
 
             }
@@ -208,25 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 if(editNomPerso2.getText().toString().equals("") || editNivJ2.getText().toString().equals("") || editForceJ2.getText().toString().equals("") || editIntJ2.getText().toString().equals("") || editAgiJ2.getText().toString().equals("")){
                     Toast.makeText(MainActivity.this, "Remplis les cases", Toast.LENGTH_LONG).show();
                 }else{
-                    String nomPerso2 = editNomPerso2.getText().toString();
-
-                    String nivJ2 = editNivJ2.getText().toString();
-                    int nivJ2Int = Integer.parseInt(nivJ2);
-
-                    int vieJ2 = 5*nivJ2Int;
-
-                    String forceJ2 = editForceJ2.getText().toString();
-                    int forceJ2Int = Integer.parseInt(forceJ2);
-
-                    String agiJ2 = editAgiJ2.getText().toString();
-                    int agiJ2Int = Integer.parseInt(agiJ2);
-
-                    String intJ2 = editIntJ2.getText().toString();
-                    int intJ2Int = Integer.parseInt(intJ2);
-
-                    testCarac(nomPerso2, nivJ2Int, vieJ2, forceJ2Int, agiJ2Int, intJ2Int, textResCreaJ2, spinClassJ2);
-
-
+                   createStats(editNomPerso2, editNivJ2, editForceJ2, editAgiJ2, editIntJ2, textResCreaJ2, spinClassJ2);
                 }
 
             }
@@ -278,24 +246,52 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Vous ne pouvez pas avoir plus de caractéristiques que de niveau!", Toast.LENGTH_LONG).show();
         }else{
 
-            if(spin.getSelectedItem().toString().equals("Mage")){
-                Mage mage = new Mage("Mage", nomPerso, niv, vie, force, agi, intel, "Boule de Feu", "Soin");
-                textview.setText("Je m'appelle " + mage.nomPerso +" et je suis un " + mage.name + " niveau " + mage.niveau + " j'ai "  + mage.vie + " pv et j'ai "+ mage.intelligence + " en intelligence, " + mage.agilite + " en agilité et " + mage.force + " en force");
-                arrayPerso.add(mage);
-
-            }else if(spin.getSelectedItem().toString().equals("Guerrier")){
-                Guerrier guerrier = new Guerrier("Guerrier", nomPerso, niv, vie, force, agi, intel, "Coup d'épée", "Coup de Rage");
-                textview.setText("Je m'appelle " + guerrier.nomPerso + " et je suis un " + guerrier.name + " niveau " + guerrier.niveau + " j'ai "  + guerrier.vie + " pv et j'ai "+ guerrier.force + " en force, " + guerrier.agilite + " en agilité et " + guerrier.intelligence + " en intelligence");
-                arrayPerso.add(guerrier);
-
-            }else{
-                Rodeur rodeur = new Rodeur("Rôdeur", nomPerso, niv, vie, force, agi, intel, "Tir à l'Arc", "Concentration");
-                textview.setText("Je m'appelle " + rodeur.nomPerso + " et je suis un " + rodeur.name + " niveau " + rodeur.niveau + " j'ai "  + rodeur.vie + " pv et j'ai "+ rodeur.agilite + " en agilité, " + rodeur.force + " en force et " + rodeur.intelligence + " en intelligence");
-                arrayPerso.add(rodeur);
-
-            }
+            chooseClass(spin.getSelectedItem().toString(), nomPerso, niv, vie, force, agi, intel, textview);
 
         }
+
+
+    }
+
+    public void chooseClass(String nameClass, String nomPerso, int niv, int vie, int force, int agi, int intel, TextView textview){
+        if(nameClass.equals("Mage")){
+            Mage mage = new Mage("Mage", nomPerso, niv, vie, force, agi, intel, "Boule de Feu", "Soin");
+            textview.setText("Je m'appelle " + mage.nomPerso +" et je suis un " + mage.name + " niveau " + mage.niveau + " j'ai "  + mage.vie + " pv et j'ai "+ mage.intelligence + " en intelligence, " + mage.agilite + " en agilité et " + mage.force + " en force");
+            arrayPerso.add(mage);
+
+        }else if(nameClass.equals("Guerrier")){
+            Guerrier guerrier = new Guerrier("Guerrier", nomPerso, niv, vie, force, agi, intel, "Coup d'épée", "Coup de Rage");
+            textview.setText("Je m'appelle " + guerrier.nomPerso + " et je suis un " + guerrier.name + " niveau " + guerrier.niveau + " j'ai "  + guerrier.vie + " pv et j'ai "+ guerrier.force + " en force, " + guerrier.agilite + " en agilité et " + guerrier.intelligence + " en intelligence");
+            arrayPerso.add(guerrier);
+
+        }else{
+            Rodeur rodeur = new Rodeur("Rôdeur", nomPerso, niv, vie, force, agi, intel, "Tir à l'Arc", "Concentration");
+            textview.setText("Je m'appelle " + rodeur.nomPerso + " et je suis un " + rodeur.name + " niveau " + rodeur.niveau + " j'ai "  + rodeur.vie + " pv et j'ai "+ rodeur.agilite + " en agilité, " + rodeur.force + " en force et " + rodeur.intelligence + " en intelligence");
+            arrayPerso.add(rodeur);
+
+        }
+    }
+
+    public void createStats(EditText editNom, EditText editNiv, EditText editForce, EditText editAgi, EditText editIntel, TextView textView, Spinner spin){
+
+        String nomPerso = editNom.getText().toString();
+
+        String niv = editNiv.getText().toString();
+        int nivInt = Integer.parseInt(niv);
+
+        int vie = 5*nivInt;
+
+        String force = editForce.getText().toString();
+        int forceInt = Integer.parseInt(force);
+
+        String agi = editAgi.getText().toString();
+        int agiInt = Integer.parseInt(agi);
+
+        String intel = editIntel.getText().toString();
+        int intelInt = Integer.parseInt(intel);
+
+        testCarac(nomPerso, nivInt, vie, forceInt, agiInt, intelInt, textView, spin);
+
 
 
     }

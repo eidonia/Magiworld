@@ -19,7 +19,6 @@ public class Guerrier extends Personnage{
 
     @Override //Coup de Rage
     public void attaqueSpeciale(Personnage defenseur, TextView textView) {
-
         degats = 2*force;
         defenseur.vie -= degats;
         this.vie = this.vie - (force/2);

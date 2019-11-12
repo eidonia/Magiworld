@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/textBienvenue"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -35,93 +35,125 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
                 android:id="@+id/textNomPerso" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_column="1"
                 android:id="@+id/editNomPerso"/>
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textClasseJ1" />
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:id="@+id/textClasseJ1"
+                android:paddingLeft="30dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
                 android:id="@+id/spinClasseJ1"/>
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="2"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textNivJ1" />
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:id="@+id/textNivJ1"
+                android:textSize="13dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editNivJ1"/>
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:id="@+id/editNivJ1" />
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textForceJ1" />
+                android:id="@+id/textForceJ1"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:paddingLeft="45dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editForceJ1"/>
+                android:id="@+id/editForceJ1"
+                android:layout_column="1"
+                android:layout_weight="1"/>
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textAgiJ1" />
+                android:id="@+id/textAgiJ1"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:paddingLeft="40dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editAgiJ1"/>
+                android:id="@+id/editAgiJ1"
+                android:layout_weight="1"
+                android:layout_column="1"/>
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textIntJ1" />
+                android:id="@+id/textIntJ1"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:paddingLeft="30dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editIntJ1"/>
+                android:id="@+id/editIntJ1"
+                android:layout_weight="1"
+                android:layout_column="1"/>
 
-        </LinearLayout>
+        </TableRow>
 
 
         <Button
@@ -140,7 +172,7 @@
 
 
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -148,93 +180,125 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
                 android:id="@+id/textNomPerso2" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editNomPerso2"/>
+                android:layout_column="1"
+                android:id="@+id/editNomPerso2" />
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textClasseJ2" />
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:id="@+id/textClasseJ2"
+                android:paddingLeft="30dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
                 android:id="@+id/spinClasseJ2"/>
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="2"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textNivJ2" />
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:id="@+id/textNivJ2"
+                android:textSize="13dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editNivJ2"/>
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:id="@+id/editNivJ2" />
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textForceJ2" />
+                android:id="@+id/textForceJ2"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:paddingLeft="45dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editForceJ2"/>
+                android:id="@+id/editForceJ2"
+                android:layout_column="1"
+                android:layout_weight="1"/>
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textAgiJ2" />
+                android:id="@+id/textAgiJ2"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:paddingLeft="40dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editAgiJ2"/>
+                android:id="@+id/editAgiJ2"
+                android:layout_weight="1"
+                android:layout_column="1"/>
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textIntJ2" />
+                android:id="@+id/textIntJ2"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:paddingLeft="30dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editIntJ2"/>
+                android:id="@+id/editIntJ2"
+                android:layout_weight="1"
+                android:layout_column="1"/>
 
-        </LinearLayout>
+        </TableRow>
 
 
         <Button

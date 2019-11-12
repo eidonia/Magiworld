@@ -32,6 +32,7 @@ public class CombatActivity extends AppCompatActivity {
     TextView textResult;
     Button buttonReturn;
     int i = 1;
+    int countAtt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class CombatActivity extends AppCompatActivity {
 
         testArray2 = findViewById(R.id.testarray2);
 
+
         touJeu(listPerso);
 
 
@@ -88,6 +90,7 @@ public class CombatActivity extends AppCompatActivity {
     }
 
     public void tourAttaque(final Personnage persoJ1, final Personnage persoJ2){
+        buttonFinRound.setEnabled(false);
         buttonAtt(buttonAttBaseJ1, buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2);
         buttonAtt(buttonAttBaseJ2, buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1);
 
@@ -97,22 +100,24 @@ public class CombatActivity extends AppCompatActivity {
         buttonAttSpe(buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, buttonAttBaseJ1);
         buttonAttSpe(buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, buttonAttBaseJ2);
 
-        buttonFinRound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonAttBaseJ2.setEnabled(true);
-                buttonAttBaseJ1.setEnabled(true);
-                buttonAttSpeJ1.setEnabled(true);
-                buttonAttSpeJ2.setEnabled(true);
-                i++;
-                textRound.setText("\n\nRound " + i);
+                buttonFinRound.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        buttonAttBaseJ2.setEnabled(true);
+                        buttonAttBaseJ1.setEnabled(true);
+                        buttonAttSpeJ1.setEnabled(true);
+                        buttonAttSpeJ2.setEnabled(true);
+                        buttonFinRound.setEnabled(false);
+                        i++;
+                        textRound.setText("\n\nRound " + i);
+                        countAtt = 0;
 
-                if(persoJ1.name.equals("Rôdeur"))
-                    persoJ1.degats = persoJ1.agilite;
-                if (persoJ2.name.equals("Rôdeur"))
-                    persoJ2.degats = persoJ2.agilite;
-            }
-        });
+                        if (persoJ1.name.equals("Rôdeur"))
+                            persoJ1.degats = persoJ1.agilite;
+                        if (persoJ2.name.equals("Rôdeur"))
+                            persoJ2.degats = persoJ2.agilite;
+                    }
+                });
     }
 
 
@@ -125,6 +130,10 @@ public class CombatActivity extends AppCompatActivity {
                 testPointDeVie(persoAtt, persoDef, textResult);
 
                 buttAttSpe.setEnabled(false);
+                countAtt++;
+                if(countAtt == 2 && persoDef.vie > 0)
+                    buttonFinRound.setEnabled(true);
+
             }
         });
 
@@ -145,9 +154,14 @@ public class CombatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 persoAttSpe.attaqueSpeciale(persoDefSpe, textInfo);
                 buttonAttSpe.setEnabled(false);
+                testPointDeVie(persoAttSpe, persoDefSpe, textResult);
 
-                if(persoAttSpe.name.equals("Guerrier") || persoAttSpe.name.equals("Mage"))
+                if(persoAttSpe.name.equals("Guerrier") || persoAttSpe.name.equals("Mage")) {
                     buttonAttBase.setEnabled(false);
+                    countAtt++;
+                    if(countAtt == 2 && persoDefSpe.vie > 0)
+                        buttonFinRound.setEnabled(true);
+                }
             }
         });
     }
@@ -155,6 +169,15 @@ public class CombatActivity extends AppCompatActivity {
     public void testPointDeVie( Personnage persoAtt, Personnage persoVie, TextView text){
         if(persoVie.vie <=0){
             text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " a gagné le combat !!");
+            buttonFinRound.setEnabled(false);
+            buttonAttSpeJ1.setEnabled(false);
+            buttonAttSpeJ2.setEnabled(false);
+            buttonAttBaseJ1.setEnabled(false);
+            buttonAttBaseJ2.setEnabled(false);
+            buttonPVJ1.setEnabled(false);
+            buttonPVJ2.setEnabled(false);
+        }else if (persoAtt.vie <=0){
+            text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " s'est tué avec son attaque ! " + persoVie.nomPerso + " gagne le combat !!");
             buttonFinRound.setEnabled(false);
             buttonAttSpeJ1.setEnabled(false);
             buttonAttSpeJ2.setEnabled(false);
@@ -186,6 +209,8 @@ public class CombatActivity extends AppCompatActivity {
 
         Personnage joueur1 = create(list, 0);
         Personnage joueur2 = create(list, 1);
+        textJoueur1.setText(joueur1.nomPerso);
+        textJoueur2.setText(joueur2.nomPerso);
         nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
         testArray2.setText("Nos 2 combattants sont : \n - " + joueur1.nomPerso + " un " + joueur1.name + " de niveau " + joueur1.niveau + "\n - " + joueur2.nomPerso + " un " + joueur2.name + " de niveau " + joueur2.niveau);
         tourAttaque(joueur1, joueur2);
