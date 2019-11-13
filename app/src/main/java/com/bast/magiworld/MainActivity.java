@@ -27,7 +27,7 @@ import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
     public final static String VAL_RETOUR = "com.bast.magiworld.VALRETOUR";
 
@@ -182,6 +182,8 @@ public class MainActivity extends Activity {
         buttonCombat.setText("Let's Fight !");
         buttonRAZ.setText("RAZ du jeu");
 
+        buttonCreateJ1.setOnClickListener(createListener);
+        buttonCreateJ2.setOnClickListener(createListener);
 
         List<String> classe = new ArrayList<String>();
         classe.add("Guerrier");
@@ -193,30 +195,6 @@ public class MainActivity extends Activity {
         adaClasse.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinClassJ1.setAdapter(adaClasse);
         spinClassJ2.setAdapter(adaClasse);
-
-        buttonCreateJ1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(editNomPerso.getText().toString().equals("") || editNivJ1.getText().toString().equals("") || editForceJ1.getText().toString().equals("") || editIntJ1.getText().toString().equals("") || editAgiJ1.getText().toString().equals("")){
-                    Toast.makeText(MainActivity.this, "Remplis les cases", Toast.LENGTH_LONG).show();
-                }else{
-                    createStats(editNomPerso, editNivJ1, editForceJ1, editAgiJ1, editIntJ1, textResCreaJ1, spinClassJ1);
-                }
-
-            }
-        });
-
-        buttonCreateJ2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(editNomPerso2.getText().toString().equals("") || editNivJ2.getText().toString().equals("") || editForceJ2.getText().toString().equals("") || editIntJ2.getText().toString().equals("") || editAgiJ2.getText().toString().equals("")){
-                    Toast.makeText(MainActivity.this, "Remplis les cases", Toast.LENGTH_LONG).show();
-                }else{
-                   createStats(editNomPerso2, editNivJ2, editForceJ2, editAgiJ2, editIntJ2, textResCreaJ2, spinClassJ2);
-                }
-
-            }
-        });
 
         buttonCombat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -310,13 +288,35 @@ public class MainActivity extends Activity {
 
         testCarac(nomPerso, nivInt, vie, forceInt, agiInt, intelInt, textView, spin);
 
-
-
     }
 
     @Override
     protected void attachBaseContext(Context newBase){
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
+
+    public View.OnClickListener createListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()){
+                case R.id.buttonCreateJ1 :
+                    createCharac(editNomPerso, editNivJ1, editForceJ1, editIntJ1, editAgiJ1, textResCreaJ1, spinClassJ1);
+                    break;
+
+                case R.id.buttonCreateJ2 :
+                    createCharac(editNomPerso2, editNivJ2, editForceJ2, editIntJ2, editAgiJ2, textResCreaJ2, spinClassJ2);
+                    break;
+            }
+        }
+    };
+
+    public void createCharac(EditText editNom, EditText editNiv, EditText editForce, EditText editInt, EditText editAgi, TextView textView, Spinner spin){
+        if(editNom.getText().toString().equals("") || editNiv.getText().toString().equals("") || editForce.getText().toString().equals("") || editInt.getText().toString().equals("") || editAgi.getText().toString().equals("")){
+            Toast.makeText(MainActivity.this, "Remplis les cases", Toast.LENGTH_LONG).show();
+        }else{
+            createStats(editNom, editNiv, editForce, editAgi, editInt, textView, spin);
+        }
+
     }
 }
 
