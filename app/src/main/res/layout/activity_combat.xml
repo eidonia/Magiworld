@@ -140,25 +140,10 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="#000000" />
 
-            <Button
-                android:id="@+id/buttonFinRound"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="100dp">
+                android:weightSum="2">
 
 
                 <ImageSwitcher
@@ -172,17 +157,34 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:id="@+id/imageJ2"
-                    android:paddingLeft="15dp"/>
+                    android:paddingRight="15dp"/>
 
             </TableRow>
 
+            <Button
+                android:id="@+id/buttonFinRound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+            <TextView
+                android:id="@+id/textResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <ImageSwitcher
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/imgSwitchFirework"/>
             <Button
                 android:id="@+id/buttonRturn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="100dp" />
+                android:layout_marginTop="15dp" />
 
 
         </LinearLayout>

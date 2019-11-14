@@ -26,7 +26,7 @@ public class CombatActivity extends Activity {
 
     TextView testArray, testArray2, textRound, separateur, separateur2, separateur3, textJoueur1, textInfoJ1, textJoueur2, textInfoJ2, textResult;
     Button buttonAttBaseJ1, buttonAttSpeJ1, buttonPVJ1, buttonAttBaseJ2, buttonAttSpeJ2, buttonPVJ2, buttonFinRound, buttonReturn;
-    ImageSwitcher imgSwitchJ1, imgSwitchJ2;
+    ImageSwitcher imgSwitchJ1, imgSwitchJ2, imgSwitchFirework;
     int i = 1;
     int countAtt = 0;
     int animationCounterJ1 = 1;
@@ -105,6 +105,7 @@ public class CombatActivity extends Activity {
 
         imgSwitchJ1 = (ImageSwitcher)findViewById(R.id.imageJoueur1);
         imgSwitchJ2 = (ImageSwitcher)findViewById(R.id.imageJ2);
+        imgSwitchFirework = (ImageSwitcher)findViewById(R.id.imgSwitchFirework);
 
         imgSwitchJ1.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
@@ -115,6 +116,15 @@ public class CombatActivity extends Activity {
         });
 
         imgSwitchJ2.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                ImageView myView = new ImageView(getApplicationContext());
+                return myView;
+
+            }
+        });
+
+        imgSwitchFirework.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
                 ImageView myView = new ImageView(getApplicationContext());
@@ -135,7 +145,7 @@ public class CombatActivity extends Activity {
         Personnage joueur1 = create(list, 0);
         Personnage joueur2 = create(list, 1);
         animPerso(joueur1, imgSwitchJ1);
-        animPerso(joueur2, imgSwitchJ2);
+        animPersoRev(joueur2, imgSwitchJ2);
         textJoueur1.setText(joueur1.nomPerso);
         textJoueur2.setText(joueur2.nomPerso);
         nomButton(buttonAttBaseJ1, buttonAttSpeJ1, buttonAttBaseJ2, buttonAttSpeJ2, joueur1, joueur2);
@@ -183,6 +193,9 @@ public class CombatActivity extends Activity {
                     }
                 });
     }
+
+
+    //ANIMATIONS
 
     public void animPerso(Personnage perso, final ImageSwitcher imageSwitcher){
 
@@ -286,9 +299,7 @@ public class CombatActivity extends Activity {
         }
     }
 
-
-
-    public void animPersoAtt(final Personnage perso, final ImageSwitcher imageSwitcher){
+    public void animPersoRev(Personnage perso, final ImageSwitcher imageSwitcher){
 
         if(perso.name.equals("Mage")){
             imgSwitchHandler = new Handler(Looper.getMainLooper());
@@ -297,30 +308,28 @@ public class CombatActivity extends Activity {
                 public void run() {
                     switch (animationCounterJ1++){
                         case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.mageattack1);
+                            imageSwitcher.setImageResource(R.mipmap.magewalk1reverse);
                             break;
                         case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.mageattack2);
+                            imageSwitcher.setImageResource(R.mipmap.magewalk2reverse);
                             break;
                         case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.mageattack3);
+                            imageSwitcher.setImageResource(R.mipmap.magewalk3reverse);
                             break;
                         case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.mageattack4);
+                            imageSwitcher.setImageResource(R.mipmap.magewalk4reverse);
                             break;
                         case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.mageattack5);
+                            imageSwitcher.setImageResource(R.mipmap.magewalk5reverse);
                             break;
                         case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.mageattack6);
-                            break;
-                        case 7 :
-                            imageSwitcher.setImageResource(R.mipmap.mageattack7);
+                            imageSwitcher.setImageResource(R.mipmap.magewalk6reverse);
                             break;
                     }
-                    animationCounterJ1 %= 8;
-                    if(animationCounterJ1 == 0 ) animationCounterJ1 =1 ;
+                    animationCounterJ1 %= 7;
+                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
                     imgSwitchHandler.postDelayed(this, 600);
+
 
                 }
             });
@@ -332,22 +341,27 @@ public class CombatActivity extends Activity {
                 public void run() {
                     switch (animationCounterJ1++){
                         case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.warattack0);
+                            imageSwitcher.setImageResource(R.mipmap.warwalk1reverse);
                             break;
                         case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.warattack1);
+                            imageSwitcher.setImageResource(R.mipmap.warwalk2reverse);
                             break;
                         case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.warattack2);
+                            imageSwitcher.setImageResource(R.mipmap.warwalk3reverse);
                             break;
                         case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.warattack4);
+                            imageSwitcher.setImageResource(R.mipmap.warwalk4reverse);
+                            break;
+                        case 5 :
+                            imageSwitcher.setImageResource(R.mipmap.warwalk5reverse);
+                            break;
+                        case 6 :
+                            imageSwitcher.setImageResource(R.mipmap.warwalk6reverse);
                             break;
                     }
-                    animationCounterJ1 %= 5;
-                    if(animationCounterJ1 == 0 ) animationCounterJ1 =1 ;
+                    animationCounterJ1 %= 7;
+                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
                     imgSwitchHandler.postDelayed(this, 600);
-
 
                 }
             });
@@ -359,29 +373,26 @@ public class CombatActivity extends Activity {
                 public void run() {
                     switch (animationCounterJ1++){
                         case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.rogueattack1);
+                            imageSwitcher.setImageResource(R.mipmap.roguewalk1reverse);
                             break;
                         case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.rogueattack2);
+                            imageSwitcher.setImageResource(R.mipmap.roguewalk2reverse);
                             break;
                         case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.rogueattack3);
+                            imageSwitcher.setImageResource(R.mipmap.roguewalk3reverse);
                             break;
                         case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.rogueattack4);
+                            imageSwitcher.setImageResource(R.mipmap.roguewalk4reverse);
                             break;
                         case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.rogueattack5);
+                            imageSwitcher.setImageResource(R.mipmap.roguewalk5reverse);
                             break;
                         case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.rogueattack6);
-                            break;
-                        case 7 :
-                            imageSwitcher.setImageResource(R.mipmap.rogueattack7);
+                            imageSwitcher.setImageResource(R.mipmap.roguewalk6reverse);
                             break;
                     }
-                    animationCounterJ1 %= 8;
-                    if(animationCounterJ1 == 0 ) animationCounterJ1 =1 ;
+                    animationCounterJ1 %= 7;
+                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
                     imgSwitchHandler.postDelayed(this, 600);
 
                 }
@@ -390,7 +401,44 @@ public class CombatActivity extends Activity {
         }
     }
 
+    public void animFirework(){
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounterJ1++){
+                    case 1 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red0);
+                        break;
+                    case 2 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red1);
+                        break;
+                    case 3 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red2);
+                        break;
+                    case 4 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red3);
+                        break;
+                    case 5 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red4);
+                        break;
+                    case 6 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red5);
+                        break;
+                    case 7 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red6);
+                        break;
+                    case 8 :
+                        imgSwitchFirework.setImageResource(R.mipmap.firework_red7);
+                        break;
+                }
+                animationCounterJ1 %= 9;
+                if ( animationCounterJ1 == 0 ) animationCounterJ1 = 1;
+                imgSwitchHandler.postDelayed(this, 300);
 
+            }
+        });
+    }
 
     // GESTION DES BUTTONS
 
@@ -406,8 +454,6 @@ public class CombatActivity extends Activity {
                 countAtt++;
                 if(countAtt == 2 && persoDef.vie > 0)
                     buttonFinRound.setEnabled(true);
-
-                animPersoAtt(persoAtt, imageSwitcher);
 
             }
         });
@@ -454,6 +500,7 @@ public class CombatActivity extends Activity {
             buttonAttBaseJ2.setEnabled(false);
             buttonPVJ1.setEnabled(false);
             buttonPVJ2.setEnabled(false);
+            animFirework();
         }else if (persoAtt.vie <=0){
             text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " s'est tué avec son attaque ! " + persoVie.nomPerso + " gagne le combat !!");
             buttonFinRound.setEnabled(false);
@@ -463,6 +510,7 @@ public class CombatActivity extends Activity {
             buttonAttBaseJ2.setEnabled(false);
             buttonPVJ1.setEnabled(false);
             buttonPVJ2.setEnabled(false);
+            animFirework();
         }
     }
 
