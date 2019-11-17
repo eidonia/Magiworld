@@ -9,31 +9,31 @@ public class MainActivityTest {
     @Test
     public void createStats() {
         Mage mage = new Mage("Mage", "Koin", 25,100, 25, 0, 0, "Bdf", "Heal");
-        assertTrue(mage.force + mage.agilite + mage.intelligence == mage.niveau);
-        Mage magetest = new Mage("Mage", "Koin", 25,100, 50, 0, 0, "Bdf", "Heal");
-        assertTrue(mage.force + mage.agilite + mage.intelligence != mage.niveau);
+        assertEquals(mage.force + mage.agilite + mage.intelligence, mage.niveau);
+        Mage magetest = new Mage("Mage", "Koin", 25,100, 50, 15, 0, "Bdf", "Heal");
+        assertNotEquals((magetest.force + magetest.agilite + magetest.intelligence), magetest.niveau);
 
     }
 
     @Test
     public void testCarac() {
-        Mage mage = new Mage("Mage", "Koin", 25,100, 25, 0, 0, "Bdf", "Heal");
-        assertTrue(mage.vie == 5* mage.niveau);
+        Mage mage = new Mage("Mage", "Koin", 25,125, 25, 0, 0, "Bdf", "Heal");
+        assertEquals(mage.vie, 5* mage.niveau);
         Mage bloup = new Mage("Mage", "Koin", 25,0, 25, 0, 0, "Bdf", "Heal");
-        assertTrue(bloup.vie == 0);
+        assertEquals(bloup.vie, 0);
         Mage test = new Mage("Mage", "Koin", 25,-100, 25, 0, 0, "Bdf", "Heal");
         assertTrue(test.getVie() < 0);
         Mage magetest = new Mage("Mage", "Koin", 25,(int)(1000*Math.random()), 25, 0, 0, "Bdf", "Heal");
-        assertTrue(magetest.vie != 5*magetest.niveau);
+        assertNotEquals(magetest.vie, 5*magetest.niveau);
     }
 
     @Test
     public void chooseClass() {
         Mage mage = new Mage("Mage", "Koin", 25,100, 25, 0, 0, "Bdf", "Heal");
-        assertTrue(mage.name.equals("Mage"));
+        assertEquals(mage.name, "Mage");
         Mage magetest = new Mage("", "Koin", 25,100, 25, 0, 0, "Bdf", "Heal");
-        assertTrue(magetest.name.equals(""));
+        assertEquals(magetest.name, "");
         Mage mag = new Mage("Guerrier", "Koin", 25,100, 25, 0, 0, "Bdf", "Heal");
-        assertTrue(!mag.name.equals("Mage"));
+        assertNotEquals(mag.name, "Mage");
     }
 }
