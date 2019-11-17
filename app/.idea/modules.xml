@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Magiworld.iml" filepath="$PROJECT_DIR$/../Magiworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../calligraphy3-3.0.0/calligraphy3-3.0.0.iml" filepath="$PROJECT_DIR$/../calligraphy3-3.0.0/calligraphy3-3.0.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../viewpump-2.0.3/viewpump-2.0.3.iml" filepath="$PROJECT_DIR$/../viewpump-2.0.3/viewpump-2.0.3.iml" />
+    </modules>
+  </component>
+</project>

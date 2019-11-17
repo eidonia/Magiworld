@@ -7,7 +7,7 @@ import android.widget.TextView;
 public class Mage extends Personnage{
     int degats = intelligence;
 
-    Mage(String name, String nomPerso, int niveau, int vie, int force, int agilite, int intelligence, String nomAttBase, String nomAttSpe) {
+    public Mage(String name, String nomPerso, int niveau, int vie, int force, int agilite, int intelligence, String nomAttBase, String nomAttSpe) {
         super(name, nomPerso, niveau, vie, force, agilite, intelligence, nomAttBase, nomAttSpe);
     }
 

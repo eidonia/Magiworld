@@ -79,11 +79,11 @@ public class CombatActivity extends Activity {
     public void createView(){
         textRound = findViewById(R.id.textRound);
         separateur = findViewById(R.id.separateur);
-        separateur.setText("\n ---------------------------------------------------- \n");
+        separateur.setText("\n --------------- \n");
         separateur2 = findViewById(R.id.separateur2);
-        separateur.setText("\n ---------------------------------------------------- \n");
+        separateur.setText("\n --------------- \n");
         separateur3 = findViewById(R.id.separateur3);
-        separateur3.setText("\n --------------------------------------------------- \n");
+        separateur3.setText("\n --------------- \n");
         textJoueur1 = findViewById(R.id.textJoueur1CA);
 
         textJoueur2 = findViewById(R.id.textJoueur2CA);
