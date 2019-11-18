@@ -31,6 +31,7 @@ public class CombatActivity extends Activity {
     int countAtt = 0;
     int animationCounterJ1 = 1;
     Handler imgSwitchHandler;
+    boolean isFighting = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,11 +186,6 @@ public class CombatActivity extends Activity {
                         i++;
                         textRound.setText("\n\nRound " + i);
                         countAtt = 0;
-
-                        if (persoJ1.name.equals("Rôdeur"))
-                            persoJ1.degats = persoJ1.agilite;
-                        if (persoJ2.name.equals("Rôdeur"))
-                            persoJ2.degats = persoJ2.agilite;
                     }
                 });
     }
@@ -198,207 +194,11 @@ public class CombatActivity extends Activity {
     //ANIMATIONS
 
     public void animPerso(Personnage perso, final ImageSwitcher imageSwitcher){
-
-        if(perso.name.equals("Mage")){
-            imgSwitchHandler = new Handler(Looper.getMainLooper());
-            imgSwitchHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    switch (animationCounterJ1++){
-                        case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk1);
-                            break;
-                        case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk2);
-                            break;
-                        case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk3);
-                            break;
-                        case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk4);
-                            break;
-                        case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk5);
-                            break;
-                        case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk6);
-                            break;
-                    }
-                    animationCounterJ1 %= 7;
-                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
-                    imgSwitchHandler.postDelayed(this, 600);
-
-
-                }
-            });
-
-        }else if(perso.name.equals("Guerrier")){
-            imgSwitchHandler = new Handler(Looper.getMainLooper());
-            imgSwitchHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    switch (animationCounterJ1++){
-                        case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk1);
-                            break;
-                        case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk2);
-                            break;
-                        case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk3);
-                            break;
-                        case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk4);
-                            break;
-                        case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk5);
-                            break;
-                        case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk6);
-                            break;
-                    }
-                    animationCounterJ1 %= 7;
-                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
-                    imgSwitchHandler.postDelayed(this, 600);
-
-                }
-            });
-
-        }else if(perso.name.equals("Rôdeur")){
-            imgSwitchHandler = new Handler(Looper.getMainLooper());
-            imgSwitchHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    switch (animationCounterJ1++){
-                        case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk1);
-                            break;
-                        case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk2);
-                            break;
-                        case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk3);
-                            break;
-                        case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk4);
-                            break;
-                        case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk5);
-                            break;
-                        case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk6);
-                            break;
-                    }
-                    animationCounterJ1 %= 7;
-                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
-                    imgSwitchHandler.postDelayed(this, 600);
-
-                }
-            });
-
-        }
+            perso.running(imageSwitcher, isFighting);
     }
 
     public void animPersoRev(Personnage perso, final ImageSwitcher imageSwitcher){
-
-        if(perso.name.equals("Mage")){
-            imgSwitchHandler = new Handler(Looper.getMainLooper());
-            imgSwitchHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    switch (animationCounterJ1++){
-                        case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk1reverse);
-                            break;
-                        case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk2reverse);
-                            break;
-                        case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk3reverse);
-                            break;
-                        case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk4reverse);
-                            break;
-                        case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk5reverse);
-                            break;
-                        case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.magewalk6reverse);
-                            break;
-                    }
-                    animationCounterJ1 %= 7;
-                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
-                    imgSwitchHandler.postDelayed(this, 600);
-
-
-                }
-            });
-
-        }else if(perso.name.equals("Guerrier")){
-            imgSwitchHandler = new Handler(Looper.getMainLooper());
-            imgSwitchHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    switch (animationCounterJ1++){
-                        case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk1reverse);
-                            break;
-                        case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk2reverse);
-                            break;
-                        case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk3reverse);
-                            break;
-                        case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk4reverse);
-                            break;
-                        case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk5reverse);
-                            break;
-                        case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.warwalk6reverse);
-                            break;
-                    }
-                    animationCounterJ1 %= 7;
-                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
-                    imgSwitchHandler.postDelayed(this, 600);
-
-                }
-            });
-
-        }else if(perso.name.equals("Rôdeur")){
-            imgSwitchHandler = new Handler(Looper.getMainLooper());
-            imgSwitchHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    switch (animationCounterJ1++){
-                        case 1 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk1reverse);
-                            break;
-                        case 2 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk2reverse);
-                            break;
-                        case 3 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk3reverse);
-                            break;
-                        case 4 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk4reverse);
-                            break;
-                        case 5 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk5reverse);
-                            break;
-                        case 6 :
-                            imageSwitcher.setImageResource(R.mipmap.roguewalk6reverse);
-                            break;
-                    }
-                    animationCounterJ1 %= 7;
-                    if(animationCounterJ1 == 0) animationCounterJ1 = 1;
-                    imgSwitchHandler.postDelayed(this, 600);
-
-                }
-            });
-
-        }
+        perso.runningReverse(imageSwitcher, isFighting);
     }
 
     public void animFirework(){
@@ -493,24 +293,10 @@ public class CombatActivity extends Activity {
     public void testPointDeVie( Personnage persoAtt, Personnage persoVie, TextView text){
         if(persoVie.vie <=0){
             text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " a gagné le combat !!");
-            buttonFinRound.setEnabled(false);
-            buttonAttSpeJ1.setEnabled(false);
-            buttonAttSpeJ2.setEnabled(false);
-            buttonAttBaseJ1.setEnabled(false);
-            buttonAttBaseJ2.setEnabled(false);
-            buttonPVJ1.setEnabled(false);
-            buttonPVJ2.setEnabled(false);
-            animFirework();
+            setButton();
         }else if (persoAtt.vie <=0){
             text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " s'est tué avec son attaque ! " + persoVie.nomPerso + " gagne le combat !!");
-            buttonFinRound.setEnabled(false);
-            buttonAttSpeJ1.setEnabled(false);
-            buttonAttSpeJ2.setEnabled(false);
-            buttonAttBaseJ1.setEnabled(false);
-            buttonAttBaseJ2.setEnabled(false);
-            buttonPVJ1.setEnabled(false);
-            buttonPVJ2.setEnabled(false);
-            animFirework();
+            setButton();
         }
     }
 
@@ -522,6 +308,18 @@ public class CombatActivity extends Activity {
         buttonJ1Spe.setText(pJ1.nomAttSpe);
         buttonJ2Base.setText(pJ2.nomAttBase);
         buttonJ2Spe.setText(pJ2.nomAttSpe);
+    }
+
+    public void setButton(){
+        buttonFinRound.setEnabled(false);
+        buttonAttSpeJ1.setEnabled(false);
+        buttonAttSpeJ2.setEnabled(false);
+        buttonAttBaseJ1.setEnabled(false);
+        buttonAttBaseJ2.setEnabled(false);
+        buttonPVJ1.setEnabled(false);
+        buttonPVJ2.setEnabled(false);
+        animFirework();
+        isFighting = false;
     }
 
 

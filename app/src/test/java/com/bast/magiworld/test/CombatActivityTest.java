@@ -1,7 +1,6 @@
 package com.bast.magiworld.test;
 
 import com.bast.magiworld.Mage;
-import com.bast.magiworld.Personnage;
 
 import org.junit.Test;
 

@@ -1,9 +1,10 @@
 package com.bast.magiworld;
 
+import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public abstract class Personnage  implements Parcelable, Attaque {
+public abstract class Personnage  implements Parcelable, Attaque, Animation {
     String name;
     String nomPerso;
     protected int niveau;
@@ -14,6 +15,8 @@ public abstract class Personnage  implements Parcelable, Attaque {
     String nomAttBase;
     String nomAttSpe;
     int degats;
+    int animationCounter = 1;
+    Handler imgSwitchHandler;
 
     //Personnage(){}
 

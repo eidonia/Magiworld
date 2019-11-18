@@ -1,7 +1,10 @@
 package com.bast.magiworld;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageSwitcher;
 import android.widget.TextView;
 
 public class Guerrier extends Personnage{
@@ -40,5 +43,90 @@ public class Guerrier extends Personnage{
 
     protected Guerrier(Parcel in){
         super(in);
+    }
+    @Override
+    public void running(final ImageSwitcher imageSwitcher, final boolean isFighting) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk1);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk2);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk3);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk4);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk5);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk6);
+                        break;
+                }
+                animationCounter %= 7;
+                if(animationCounter == 0) animationCounter = 1;
+                if(isFighting) imgSwitchHandler.postDelayed(this, 600);
+            }
+        });
+    }
+
+    @Override
+    public void runningReverse(final ImageSwitcher imageSwitcher, final boolean isFighting) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk1reverse);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk2reverse);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk3reverse);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk4reverse);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk5reverse);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk6reverse);
+                        break;
+                }
+                animationCounter %= 7;
+                if(animationCounter == 0) animationCounter = 1;
+                if(isFighting) imgSwitchHandler.postDelayed(this, 600);
+            }
+        });
+    }
+
+    @Override
+    public void death() {
+
+    }
+
+    @Override
+    public void win() {
+
+    }
+
+    @Override
+    public void attBase() {
+
+    }
+
+    @Override
+    public void attSpe() {
+
     }
 }
