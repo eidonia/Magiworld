@@ -44,8 +44,9 @@ public class Guerrier extends Personnage{
     protected Guerrier(Parcel in){
         super(in);
     }
+
     @Override
-    public void running(final ImageSwitcher imageSwitcher, final boolean isFighting) {
+    public void running(final ImageSwitcher imageSwitcher) {
         imgSwitchHandler = new Handler(Looper.getMainLooper());
         imgSwitchHandler.post(new Runnable() {
             @Override
@@ -78,7 +79,7 @@ public class Guerrier extends Personnage{
     }
 
     @Override
-    public void runningReverse(final ImageSwitcher imageSwitcher, final boolean isFighting) {
+    public void runningReverse(final ImageSwitcher imageSwitcher) {
         imgSwitchHandler = new Handler(Looper.getMainLooper());
         imgSwitchHandler.post(new Runnable() {
             @Override
@@ -111,22 +112,132 @@ public class Guerrier extends Personnage{
     }
 
     @Override
-    public void death() {
-
+    public void death(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath1);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath2);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath3);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath4);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath5);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath6);
+                        break;
+                    case 7 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath7);
+                        break;
+                    case 8 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath8);
+                        break;
+                    case 9 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath9);
+                        break;
+                    case 10 :
+                        imageSwitcher.setImageResource(R.mipmap.wardeath10);
+                        isDead = true;
+                        break;
+                }
+                animationCounter %= 11;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isDead) imgSwitchHandler.postDelayed(this, 600);
+            }
+        });
     }
 
     @Override
-    public void win() {
-
+    public void win(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin2);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin3);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin5);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin6);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin7);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin8);
+                        break;
+                    case 7 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin9);
+                        break;
+                    case 8 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin10);
+                        break;
+                    case 9 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin11);
+                        break;
+                    case 10 :
+                        imageSwitcher.setImageResource(R.mipmap.warwin12);
+                        break;
+                }
+                animationCounter %= 11;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isDead) imgSwitchHandler.postDelayed(this, 600);
+            }
+        });
     }
 
     @Override
-    public void attBase() {
-
+    public void attBase(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack1);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack2);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack3);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack4);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack5);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack6);
+                        isHitting = true;
+                        break;
+                }
+                animationCounter %= 7;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isFighting) imgSwitchHandler.postDelayed(this, 600);
+            }
+        });
     }
 
     @Override
-    public void attSpe() {
+    public void attSpe(final ImageSwitcher imageSwitcher) {
 
     }
 }

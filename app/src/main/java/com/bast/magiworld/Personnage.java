@@ -17,6 +17,9 @@ public abstract class Personnage  implements Parcelable, Attaque, Animation {
     int degats;
     int animationCounter = 1;
     Handler imgSwitchHandler;
+    boolean isFighting = true;
+    boolean isDead = false;
+    boolean isHitting = false;
 
     //Personnage(){}
 

@@ -31,7 +31,6 @@ public class CombatActivity extends Activity {
     int countAtt = 0;
     int animationCounterJ1 = 1;
     Handler imgSwitchHandler;
-    boolean isFighting = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,14 +165,14 @@ public class CombatActivity extends Activity {
 
     public void tourAttaque(final Personnage persoJ1, final Personnage persoJ2){
         buttonFinRound.setEnabled(false);
-        buttonAtt(buttonAttBaseJ1, buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, imgSwitchJ1);
-        buttonAtt(buttonAttBaseJ2, buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, imgSwitchJ2);
+        buttonAtt(buttonAttBaseJ1, buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, imgSwitchJ1, imgSwitchJ2);
+        buttonAtt(buttonAttBaseJ2, buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, imgSwitchJ2, imgSwitchJ1);
 
         buttonPV(buttonPVJ1, textInfoJ1, persoJ1);
         buttonPV(buttonPVJ2, textInfoJ2, persoJ2);
 
-        buttonAttSpe(buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, buttonAttBaseJ1);
-        buttonAttSpe(buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, buttonAttBaseJ2);
+        buttonAttSpe(buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, buttonAttBaseJ1, imgSwitchJ1, imgSwitchJ2);
+        buttonAttSpe(buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, buttonAttBaseJ2, imgSwitchJ1, imgSwitchJ2);
 
                 buttonFinRound.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -193,12 +192,12 @@ public class CombatActivity extends Activity {
 
     //ANIMATIONS
 
-    public void animPerso(Personnage perso, final ImageSwitcher imageSwitcher){
-            perso.running(imageSwitcher, isFighting);
+    public void animPerso(final Personnage perso, final ImageSwitcher imageSwitcher){
+        perso.running(imageSwitcher);
     }
 
     public void animPersoRev(Personnage perso, final ImageSwitcher imageSwitcher){
-        perso.runningReverse(imageSwitcher, isFighting);
+        perso.runningReverse(imageSwitcher);
     }
 
     public void animFirework(){
@@ -242,13 +241,14 @@ public class CombatActivity extends Activity {
 
     // GESTION DES BUTTONS
 
-    public void buttonAtt(final Button buttonAttaque, final Button buttAttSpe, final TextView textInfo, final Personnage persoAtt, final Personnage persoDef, final ImageSwitcher imageSwitcher){
+    public void buttonAtt(final Button buttonAttaque, final Button buttAttSpe, final TextView textInfo, final Personnage persoAtt, final Personnage persoDef,  final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef){
         buttonAttaque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 persoAtt.attaqueDeBase(persoDef, textInfo);
                 buttonAttaque.setEnabled(false);
-                testPointDeVie(persoAtt, persoDef, textResult);
+                persoAtt.attBase(imageSwitcherAtt);
+                testPointDeVie(persoAtt, persoDef, textResult, imageSwitcherAtt, imageSwitcherDef);
 
                 buttAttSpe.setEnabled(false);
                 countAtt++;
@@ -269,13 +269,13 @@ public class CombatActivity extends Activity {
         });
     }
 
-    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo, final Personnage persoAttSpe, final Personnage persoDefSpe, final Button buttonAttBase){
+    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo, final Personnage persoAttSpe, final Personnage persoDefSpe, final Button buttonAttBase, final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef){
         buttonAttSpe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 persoAttSpe.attaqueSpeciale(persoDefSpe, textInfo);
                 buttonAttSpe.setEnabled(false);
-                testPointDeVie(persoAttSpe, persoDefSpe, textResult);
+                testPointDeVie(persoAttSpe, persoDefSpe, textResult, imageSwitcherAtt, imageSwitcherDef);
 
                 if(persoAttSpe.name.equals("Guerrier") || persoAttSpe.name.equals("Mage")) {
                     buttonAttBase.setEnabled(false);
@@ -290,13 +290,21 @@ public class CombatActivity extends Activity {
 
     // CALCUL DES POINTS DE VIE A CHAQUE ATTAQUE
 
-    public void testPointDeVie( Personnage persoAtt, Personnage persoVie, TextView text){
+    public void testPointDeVie( Personnage persoAtt, Personnage persoVie, TextView text, ImageSwitcher imageSwitcherAtt, ImageSwitcher imageSwitcherDef){
         if(persoVie.vie <=0){
             text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " a gagné le combat !!");
             setButton();
+            persoAtt.isFighting = false;
+            persoVie.isFighting = false;
+            persoVie.death(imageSwitcherDef);
+            persoAtt.win(imageSwitcherAtt);
         }else if (persoAtt.vie <=0){
             text.setText("\n\nFélicitation !! " + persoAtt.nomPerso + " s'est tué avec son attaque ! " + persoVie.nomPerso + " gagne le combat !!");
             setButton();
+            persoAtt.isFighting = false;
+            persoVie.isFighting = false;
+            persoAtt.death(imageSwitcherAtt);
+            persoVie.win(imageSwitcherDef);
         }
     }
 
@@ -319,7 +327,6 @@ public class CombatActivity extends Activity {
         buttonPVJ1.setEnabled(false);
         buttonPVJ2.setEnabled(false);
         animFirework();
-        isFighting = false;
     }
 
 
