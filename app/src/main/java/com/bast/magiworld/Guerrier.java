@@ -73,7 +73,7 @@ public class Guerrier extends Personnage{
                 }
                 animationCounter %= 7;
                 if(animationCounter == 0) animationCounter = 1;
-                if(isFighting) imgSwitchHandler.postDelayed(this, 600);
+                if(isFighting) imgSwitchHandler.postDelayed(this,300);
             }
         });
     }
@@ -106,7 +106,7 @@ public class Guerrier extends Personnage{
                 }
                 animationCounter %= 7;
                 if(animationCounter == 0) animationCounter = 1;
-                if(isFighting) imgSwitchHandler.postDelayed(this, 600);
+                if(isFighting) imgSwitchHandler.postDelayed(this,300);
             }
         });
     }
@@ -152,7 +152,7 @@ public class Guerrier extends Personnage{
                 }
                 animationCounter %= 11;
                 if(animationCounter == 0) animationCounter = 1;
-                if(!isDead) imgSwitchHandler.postDelayed(this, 600);
+                if(!isDead) imgSwitchHandler.postDelayed(this,300);
             }
         });
     }
@@ -197,7 +197,7 @@ public class Guerrier extends Personnage{
                 }
                 animationCounter %= 11;
                 if(animationCounter == 0) animationCounter = 1;
-                if(!isDead) imgSwitchHandler.postDelayed(this, 600);
+                if(!isDead) imgSwitchHandler.postDelayed(this,300);
             }
         });
     }
@@ -231,13 +231,110 @@ public class Guerrier extends Personnage{
                 }
                 animationCounter %= 7;
                 if(animationCounter == 0) animationCounter = 1;
-                if(!isFighting) imgSwitchHandler.postDelayed(this, 600);
+                if(!isFighting) imgSwitchHandler.postDelayed(this,300);
+            }
+        });
+    }
+
+    @Override
+    public void attBaseReverse(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack1reverse);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack2reverse);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack3reverse);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack4reverse);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack5reverse);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.warwalk_attack6reverse);
+                        isHitting = true;
+                        break;
+                }
+                animationCounter %= 7;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isFighting) imgSwitchHandler.postDelayed(this,300);
             }
         });
     }
 
     @Override
     public void attSpe(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe1);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe2);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe3);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe4);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe5);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe6);
+                        isHitting = true;
+                        break;
+                }
+                animationCounter %= 7;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isFighting) imgSwitchHandler.postDelayed(this,300);
+            }
+        });
+    }
 
+    @Override
+    public void attSpeReverse(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe1reverse);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe2reverse);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe3reverse);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe4reverse);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe5reverse);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.warattackspe6reverse);
+                        isHitting = true;
+                        break;
+                }
+                animationCounter %= 7;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isFighting) imgSwitchHandler.postDelayed(this,300);
+            }
+        });
     }
 }

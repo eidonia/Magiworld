@@ -165,14 +165,14 @@ public class CombatActivity extends Activity {
 
     public void tourAttaque(final Personnage persoJ1, final Personnage persoJ2){
         buttonFinRound.setEnabled(false);
-        buttonAtt(buttonAttBaseJ1, buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, imgSwitchJ1, imgSwitchJ2);
-        buttonAtt(buttonAttBaseJ2, buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, imgSwitchJ2, imgSwitchJ1);
+        buttonAtt(buttonAttBaseJ1, buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, imgSwitchJ1, imgSwitchJ2, 1);
+        buttonAtt(buttonAttBaseJ2, buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, imgSwitchJ2, imgSwitchJ1, 2);
 
         buttonPV(buttonPVJ1, textInfoJ1, persoJ1);
         buttonPV(buttonPVJ2, textInfoJ2, persoJ2);
 
-        buttonAttSpe(buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, buttonAttBaseJ1, imgSwitchJ1, imgSwitchJ2);
-        buttonAttSpe(buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, buttonAttBaseJ2, imgSwitchJ1, imgSwitchJ2);
+        buttonAttSpe(buttonAttSpeJ1, textInfoJ1, persoJ1, persoJ2, buttonAttBaseJ1, imgSwitchJ1, imgSwitchJ2, 1);
+        buttonAttSpe(buttonAttSpeJ2, textInfoJ2, persoJ2, persoJ1, buttonAttBaseJ2, imgSwitchJ2, imgSwitchJ1, 2);
 
                 buttonFinRound.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -241,13 +241,21 @@ public class CombatActivity extends Activity {
 
     // GESTION DES BUTTONS
 
-    public void buttonAtt(final Button buttonAttaque, final Button buttAttSpe, final TextView textInfo, final Personnage persoAtt, final Personnage persoDef,  final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef){
+    public void buttonAtt(final Button buttonAttaque, final Button buttAttSpe, final TextView textInfo, final Personnage persoAtt, final Personnage persoDef,  final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef, final int i){
         buttonAttaque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 persoAtt.attaqueDeBase(persoDef, textInfo);
                 buttonAttaque.setEnabled(false);
-                persoAtt.attBase(imageSwitcherAtt);
+                if (persoDef.vie > 0){
+                    if(i == 1){
+                        persoAtt.attBase(imageSwitcherAtt);
+                    }else{
+                        persoAtt.attBaseReverse(imageSwitcherAtt);
+                    }
+                }
+
+
                 testPointDeVie(persoAtt, persoDef, textResult, imageSwitcherAtt, imageSwitcherDef);
 
                 buttAttSpe.setEnabled(false);
@@ -269,20 +277,26 @@ public class CombatActivity extends Activity {
         });
     }
 
-    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo, final Personnage persoAttSpe, final Personnage persoDefSpe, final Button buttonAttBase, final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef){
+    public void buttonAttSpe(final Button buttonAttSpe, final TextView textInfo, final Personnage persoAttSpe, final Personnage persoDefSpe, final Button buttonAttBase, final ImageSwitcher imageSwitcherAtt, final ImageSwitcher imageSwitcherDef, final int i){
         buttonAttSpe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 persoAttSpe.attaqueSpeciale(persoDefSpe, textInfo);
+                if (persoAttSpe.vie > 0 && persoDefSpe.vie > 0){
+                    if(i == 1){
+                        persoAttSpe.attSpe(imageSwitcherAtt);
+                    }else{
+                        persoAttSpe.attSpeReverse(imageSwitcherAtt);
+                    }
+                }
+
+                countAtt++;
                 buttonAttSpe.setEnabled(false);
+                buttonAttBase.setEnabled(false);
                 testPointDeVie(persoAttSpe, persoDefSpe, textResult, imageSwitcherAtt, imageSwitcherDef);
 
-                if(persoAttSpe.name.equals("Guerrier") || persoAttSpe.name.equals("Mage")) {
-                    buttonAttBase.setEnabled(false);
-                    countAtt++;
-                    if(countAtt == 2 && persoDefSpe.vie > 0)
-                        buttonFinRound.setEnabled(true);
-                }
+                if(countAtt == 2 && persoDefSpe.vie > 0)
+                    buttonFinRound.setEnabled(true);
             }
         });
     }

@@ -72,7 +72,7 @@ public class Rodeur extends Personnage{
                 }
                 animationCounter %= 7;
                 if(animationCounter == 0) animationCounter = 1;
-                if(isFighting) imgSwitchHandler.postDelayed(this, 600);
+                if(isFighting) imgSwitchHandler.postDelayed(this, 300);
             }
         });
     }
@@ -105,7 +105,7 @@ public class Rodeur extends Personnage{
                 }
                 animationCounter %= 7;
                 if(animationCounter == 0) animationCounter = 1;
-                if(isFighting) imgSwitchHandler.postDelayed(this, 600);
+                if(isFighting) imgSwitchHandler.postDelayed(this, 300);
             }
         });
     }
@@ -151,7 +151,7 @@ public class Rodeur extends Personnage{
                 }
                 animationCounter %= 11;
                 if(animationCounter == 0) animationCounter = 1;
-                if(!isDead) imgSwitchHandler.postDelayed(this, 600);
+                if(!isDead) imgSwitchHandler.postDelayed(this, 300);
             }
         });
     }
@@ -211,7 +211,7 @@ public class Rodeur extends Personnage{
                 }
                 animationCounter %= 16;
                 if(animationCounter == 0) animationCounter = 1;
-                if(!isDead) imgSwitchHandler.postDelayed(this, 600);
+                if(!isDead) imgSwitchHandler.postDelayed(this, 300);
             }
         });
     }
@@ -245,13 +245,140 @@ public class Rodeur extends Personnage{
                 }
                 animationCounter %= 7;
                 if(animationCounter == 0) animationCounter = 1;
-                if(!isFighting) imgSwitchHandler.postDelayed(this, 600);
+                if(!isFighting) imgSwitchHandler.postDelayed(this, 300);
+            }
+        });
+    }
+
+    @Override
+    public void attBaseReverse(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.roguewalk_attack1reverse);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.roguewalk_attack2reverse);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.roguewalk_attack3reverse);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.roguewalk_attack4reverse);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.roguewalk_attack5reverse);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.roguewalk_attack6reverse);
+                        isHitting = true;
+                        break;
+                }
+                animationCounter %= 7;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isFighting) imgSwitchHandler.postDelayed(this, 300);
             }
         });
     }
 
     @Override
     public void attSpe(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe1);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe2);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe3);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe4);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe5);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe6);
+                        break;
+                    case 7 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe7);
+                        break;
+                    case 8 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe8);
+                        break;
+                    case 9 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe9);
+                        break;
+                    case 10 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe10);
+                        break;
+                    case 11 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe11);
+                        isHitting = true;
+                        break;
+                }
+                animationCounter %= 12;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isDead) imgSwitchHandler.postDelayed(this, 300);
+            }
+        });
+    }
 
+    @Override
+    public void attSpeReverse(final ImageSwitcher imageSwitcher) {
+        imgSwitchHandler = new Handler(Looper.getMainLooper());
+        imgSwitchHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                switch (animationCounter++){
+                    case 1 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe1reverse);
+                        break;
+                    case 2 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe2reverse);
+                        break;
+                    case 3 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe3reverse);
+                        break;
+                    case 4 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe4reverse);
+                        break;
+                    case 5 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe5reverse);
+                        break;
+                    case 6 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe6reverse);
+                        break;
+                    case 7 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe7reverse);
+                        break;
+                    case 8 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe8reverse);
+                        break;
+                    case 9 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe9reverse);
+                        break;
+                    case 10 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe10reverse);
+                        break;
+                    case 11 :
+                        imageSwitcher.setImageResource(R.mipmap.rogueattackspe11reverse);
+                        isHitting = true;
+                        break;
+                }
+                animationCounter %= 12;
+                if(animationCounter == 0) animationCounter = 1;
+                if(!isDead) imgSwitchHandler.postDelayed(this, 300);
+            }
+        });
     }
 }

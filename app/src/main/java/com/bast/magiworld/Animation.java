@@ -10,6 +10,8 @@ public interface Animation {
     void death(final ImageSwitcher imageSwitcher);
     void win(final ImageSwitcher imageSwitcher);
     void attBase(final ImageSwitcher imageSwitcher);
+    void attBaseReverse(final ImageSwitcher imageSwitcher);
     void attSpe(final ImageSwitcher imageSwitcher);
+    void attSpeReverse(final ImageSwitcher imageSwitcher);
 
 }
